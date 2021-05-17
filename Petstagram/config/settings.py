@@ -13,8 +13,6 @@ secrets = json.loads(open(SECRETS_PATH).read())
 # settings모듈에 동적으로 할당
 for key, value in secrets.items():
     setattr(sys.modules[__name__], key, value)
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,7 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'Aisa/Seoul'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
