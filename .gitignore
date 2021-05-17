@@ -2,6 +2,15 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,venv,django
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,venv,django
 
+# secret key
+secrets.json
+
+### venv dir names
+### 개인 venv directory 작성해주세요
+petvenv
+
+
+
 ### Django ###
 *.log
 *.pot
