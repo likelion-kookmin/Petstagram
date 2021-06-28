@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="https://kit.fontawesome.com/8500e488ae.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    <title>Petstagram</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__blank" style="width: 10px;"></div>
+        <div class="navbar__logo" style="cursor: pointer;" onclick="location.href='/';">
+            <i class="fas fa-paw"></i>
+            <a class="navbar__title">펫스타그램</a>
+        </div>
+        <input class="navbar__search" type="text" placeholder="Search">
+        <ul class="navbar__icons">
+            <li><i class="fas fa-bell fa-lg"></i></li>
+            <li><i class="fas fa-user fa-lg"></i></li>
+            <li><i class="fas fa-pen-square fa-lg"></i></li>
+        </ul>
+
+        <div class="navbar__blank" style="width: 10px;"></div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+    
+</body>
+</html>
