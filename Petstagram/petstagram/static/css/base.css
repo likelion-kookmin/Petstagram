@@ -22,6 +22,10 @@ a {
     color: black;
 }
 
+div {
+    box-sizing: border-box;
+  }
+
 .navbar {
     width: 100%;
     display: flex;
