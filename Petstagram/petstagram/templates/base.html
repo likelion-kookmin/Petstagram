@@ -5,10 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <script src="https://kit.fontawesome.com/8500e488ae.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    
+    {% block extrahead %}
+    
+    {% endblock %}
+    
     <title>Petstagram</title>
 </head>
 <body>

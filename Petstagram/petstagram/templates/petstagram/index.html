@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<head>
+
+    {% load static %}
+    {% block extrahead %}
+
+    <link rel="stylesheet" href="{% static "css/petstagram/index.css" %}">
+
+    {% endblock extrahead %}
+    
+</head>
+
+{% block content %}
+
+<div style="height: 15vh;"></div>
+
+<div class="content">
+    <h2>최근 피드</h2>
+</div>
+
+{% endblock %}
