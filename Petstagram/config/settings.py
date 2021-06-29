@@ -19,6 +19,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 장고에서 주는 유저모델로 대체
+AUTH_USER_MODEL = 'account.CustomUser'
 
 # Application definition
 

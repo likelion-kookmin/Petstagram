@@ -1,37 +1,38 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
-from django.contrib import auth
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from .forms import RegisterForm
+from django.views.decorators.http import require_http_methods
 # Create your views here.
 # 회원가입
-def signup(request):
-    if request.method == "POST":
-        if request.POST["password1"] == request.POST["password2"]:
-            user = User.objects.create_user(
-                username=request.POST["username"], password=request.POST["password1"])
-            auth.login(request, user)
-            return redirect('home')
-        else:
-            return render(request, 'signup.html')
-    
+def signup_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+        return redirect("home")
     else:
-        return render(request, 'signup.html')
+        form = RegisterForm()
+        return render(request, 'signup.html', {'form' : form})
 
 #로그인
-def login(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(request, username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('home')
-        else:
-            return render(request, 'login.html', {'error': 'username or password is incorrect'})
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request = request, data = request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+            user = authenticate(request = request, username = username, password = password)
+            if user is not None:
+                login(request, user)
+            
+            return redirect("home")
     else:
-        return render(request, 'login.html')
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form' : form})
 
 #로그아웃
-def logout(request):
-    auth.logout(request)
-    return redirect('home')
+def logout_view(request):
+    logout(request)
+    return redirect("home")
