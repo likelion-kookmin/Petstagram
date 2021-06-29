@@ -50,105 +50,55 @@
     </div>
 
     <div class="card-list">
-        <div class="card">
-            <!-- 카드 헤더 -->
-            <div class="card-header">
-                <div class="card-header-file-state">
-                    <i class="fas fa-images"></i>
+        {% for feed in feeds %}
+            <div class="card">
+                <!-- 카드 헤더 -->
+                <div class="card-header" style="background-image: url({{feed.media}});" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
+                    <div class="card-header-file-state">
+                        <!-- <i class="fas fa-images"></i> -->
+                    </div>
+                </div>
+
+                <!-- 모달 내용 -->
+                <div class="modal fade" id="feed{{ feed.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ feed.title }}</h5>
+                                <br><br>{{ feed.writer }}/t{{ feed.create_date }} <br>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ feed.context }} <br><br>
+                                {% if feed.media %}
+                                    <img src="{{ feed.media.url }}" width="300" height="300">
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>    
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  카드 바디 -->
+                <div class="card-body" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
+
+                    <!--  카드 바디 헤더 -->
+                    <div class="card-body-header">
+                        <div class="card-body-title">{{ feed.title }}</div>
+                        <div class="card-body-writer">{{ feed.writer }}</div>
+                    </div>
+                    <div style="width: 90%; margin-left: 7%;">
+                        <p class="card-body-description">
+                            {{ feed.context }} </p>
+                    </div>
+                    <!--  카드 바디 본문 -->
                 </div>
             </div>
 
-            <!--  카드 바디 -->
-            <div class="card-body">
-
-                <!--  카드 바디 헤더 -->
-                <div class="card-body-header">
-                    <div class="card-body-title">제목제목</div>
-                    <div class="card-body-writer">이름 님</div>
-                </div>
-                <div style="width: 90%; margin-left: 7%;">
-                    <p class="card-body-description">
-                        글자수를재볼까요과연몇글자까지가능할지개궁금한데요제가한번재보겠습니다근데이거넘으면어카지? </p>
-                </div>
-                <!--  카드 바디 본문 -->
-
-            </div>
-        </div>
-
-        <div class="card">
-            <!-- 카드 헤더 -->
-            <div class="card-header">
-                <div class="card-header-file-state">
-                    <i class="fas fa-images"></i>
-                </div>
-            </div>
-
-            <!--  카드 바디 -->
-            <div class="card-body">
-
-                <!--  카드 바디 헤더 -->
-                <div class="card-body-header">
-                    <div class="card-body-title">제목제목</div>
-                    <div class="card-body-writer">이름 님</div>
-                </div>
-                <div style="width: 90%; margin-left: 7%;">
-                    <p class="card-body-description">
-                        글자수를재볼까요과연몇글자까지가능할지개궁금한데요제가한번재보겠습니다근데이거넘으면어카지? </p>
-                </div>
-                <!--  카드 바디 본문 -->
-
-            </div>
-        </div>
-
-        <div class="card">
-            <!-- 카드 헤더 -->
-            <div class="card-header">
-                <div class="card-header-file-state">
-                    <i class="fas fa-images"></i>
-                </div>
-            </div>
-
-            <!--  카드 바디 -->
-            <div class="card-body">
-
-                <!--  카드 바디 헤더 -->
-                <div class="card-body-header">
-                    <div class="card-body-title">제목제목</div>
-                    <div class="card-body-writer">이름 님</div>
-                </div>
-                <div style="width: 90%; margin-left: 7%;">
-                    <p class="card-body-description">
-                        글자수를재볼까요과연몇글자까지가능할지개궁금한데요제가한번재보겠습니다근데이거넘으면</p>
-                </div>
-                <!--  카드 바디 본문 -->
-
-            </div>
-        </div>
-
-        <div class="card">
-            <!-- 카드 헤더 -->
-            <div class="card-header">
-                <div class="card-header-file-state">
-                    <i class="fas fa-images"></i>
-                </div>
-            </div>
-
-            <!--  카드 바디 -->
-            <div class="card-body">
-
-                <!--  카드 바디 헤더 -->
-                <div class="card-body-header">
-                    <div class="card-body-title">제목제목</div>
-                    <div class="card-body-writer">이름 님</div>
-                </div>
-                <div style="width: 90%; margin-left: 7%;">
-                    <p class="card-body-description">
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaㄴㅁㄴㅇㄻㄴㅇㄻㅇㄹㄴㅁㅇaaaaaaaaaaaaaaaaaaaaa</p>
-                </div>
-                <!--  카드 바디 본문 -->
-
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
 </div>
