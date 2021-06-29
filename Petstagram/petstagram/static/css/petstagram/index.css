@@ -1,0 +1,138 @@
+.content {
+    width: 80%;
+    margin: auto;
+}
+
+.recent-feed {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 3vh 0 2vh 0;
+}
+
+.btn-write {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #F59B25;
+    border: 2px solid #F59B25;
+    border-radius: 25px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    position:relative;
+    margin-right: 25px;
+}
+
+.btn-write > span {
+    position: relative;
+    text-align: center;
+}
+
+.btn-write:hover {
+    padding: 0;
+}
+
+.btn-write:focus {
+    padding: 0;
+}
+
+.btn-write:active {
+    padding: 0;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 230px;
+    height: 240px;
+	border-radius: 15px;
+	display: inline-block;
+    margin-right: 20px;
+	margin-bottom: 30px;
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	overflow: hidden;
+    flex-grow: 1;
+}
+
+.card-header {
+	-webkit-transition: 0.5s; /*사파리 & 크롬*/
+    -moz-transition: 0.5s;  /*파이어폭스*/
+    -ms-transition: 0.5s;	/*인터넷 익스플로러*/
+    -o-transition: 0.5s;  /*오페라*/
+    transition: 0.5s;
+	width: auto;
+	height: 170px;
+	border-radius: 15px 15px 0 0;
+	background-image: url("https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/21/petzzi/20210521195936528xpui.jpg");
+	background-size: auto;
+	background-repeat: no-repeat;	
+    background-size: cover;
+    background-position: center;
+}
+
+.card:hover .card-header  {
+	opacity: 0.8;
+	height: 120px;
+}
+
+.card-header-file-state {
+    color: #FFF ;
+    opacity: 0.6;
+    float: right;
+    margin: 5px 5px 0 0;
+    padding: 10px 10px;
+    visibility: hidden;
+}
+
+.card-body-title {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-body-writer {
+    float: right;
+    display: inline-block;
+    font-size: 14px;
+    color: #F59B25;
+}
+
+.card-body-header{
+	line-height: 25px;
+	margin: 10px 20px 0px 20px;
+}
+
+.card-body-description  {
+    opacity: 0;
+    color: #757B82;
+    line-height: 23px;
+    -webkit-transition: .2s ease-in-out; /*사파리&크롬*/
+    -moz-transition: .2s ease-in-out; /*파이어폭스*/
+    -ms-transition: .2s ease-in-out; /*익스플로러*/
+    -o-transition: .2s ease-in-out; /*오페라*/
+    transition : .2s ease-in-out;
+    overflow: hidden;
+	height: 180px;
+    margin-top: 5px;
+    word-break:break-all;
+}
+
+.card:hover .card-body-description {
+    opacity: 1;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -ms-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition : .5s ease-in-out;
+}

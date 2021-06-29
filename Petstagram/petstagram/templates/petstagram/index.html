@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+<head>
+    {% load static %}
+    {% block extrahead %}
+
+    <link rel="stylesheet" href="{% static "css/petstagram/index.css" %}">
+
+    {% endblock extrahead %}
+</head>
+
+{% block content %}
+
+<div class="content">
+    <div class="recent-feed">
+        최근 피드
+        <button class="btn-write" style="float: right;"><span><i class="fas fa-pen-square"></i> 새글작성</span></button>
+    </div>
+    
+
+    <div class="card-list">
+        <div class="card">
+            <!-- 카드 헤더 -->
+            <div class="card-header">
+                <div class="card-header-file-state">
+                    <i class="fas fa-images"></i>
+                </div>
+            </div>
+
+            <!--  카드 바디 -->
+            <div class="card-body">
+
+                <!--  카드 바디 헤더 -->
+                <div class="card-body-header">
+                    <div class="card-body-title">제목제목</div>
+                    <div class="card-body-writer">이름 님</div>
+                </div>
+                <div style="width: 90%; margin-left: 7%;">
+                    <p class="card-body-description">
+                        글자수를재볼까요과연몇글자까지가능할지개궁금한데요제가한번재보겠습니다근데이거넘으면어카지? </p>
+                </div>
+                <!--  카드 바디 본문 -->
+
+            </div>
+        </div>
+
+        <div class="card">
+            <!-- 카드 헤더 -->
+            <div class="card-header">
+                <div class="card-header-file-state">
+                    <i class="fas fa-images"></i>
+                </div>
+            </div>
+
+            <!--  카드 바디 -->
+            <div class="card-body">
+
+                <!--  카드 바디 헤더 -->
+                <div class="card-body-header">
+                    <div class="card-body-title">제목제목</div>
+                    <div class="card-body-writer">이름 님</div>
+                </div>
+                <div style="width: 90%; margin-left: 7%;">
+                    <p class="card-body-description">
+                        글자수를재볼까요과연몇글자까지가능할지개궁금한데요제가한번재보겠습니다근데이거넘으면어카지? </p>
+                </div>
+                <!--  카드 바디 본문 -->
+
+            </div>
+        </div>
+
+        <div class="card">
+            <!-- 카드 헤더 -->
+            <div class="card-header">
+                <div class="card-header-file-state">
+                    <i class="fas fa-images"></i>
+                </div>
+            </div>
+
+            <!--  카드 바디 -->
+            <div class="card-body">
+
+                <!--  카드 바디 헤더 -->
+                <div class="card-body-header">
+                    <div class="card-body-title">제목제목</div>
+                    <div class="card-body-writer">이름 님</div>
+                </div>
+                <div style="width: 90%; margin-left: 7%;">
+                    <p class="card-body-description">
+                        글자수를재볼까요과연몇글자까지가능할지개궁금한데요제가한번재보겠습니다근데이거넘으면</p>
+                </div>
+                <!--  카드 바디 본문 -->
+
+            </div>
+        </div>
+
+        <div class="card">
+            <!-- 카드 헤더 -->
+            <div class="card-header">
+                <div class="card-header-file-state">
+                    <i class="fas fa-images"></i>
+                </div>
+            </div>
+
+            <!--  카드 바디 -->
+            <div class="card-body">
+
+                <!--  카드 바디 헤더 -->
+                <div class="card-body-header">
+                    <div class="card-body-title">제목제목</div>
+                    <div class="card-body-writer">이름 님</div>
+                </div>
+                <div style="width: 90%; margin-left: 7%;">
+                    <p class="card-body-description">
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaㄴㅁㄴㅇㄻㄴㅇㄻㅇㄹㄴㅁㅇaaaaaaaaaaaaaaaaaaaaa</p>
+                </div>
+                <!--  카드 바디 본문 -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
