@@ -3,6 +3,48 @@
     margin: auto;
 }
 
+.recent-feed {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 3vh 0 2vh 0;
+}
+
+.btn-write {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #F59B25;
+    border: 2px solid #F59B25;
+    border-radius: 25px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    position:relative;
+    margin-right: 25px;
+}
+
+.btn-write > span {
+    position: relative;
+    text-align: center;
+}
+
+.btn-write:hover {
+    padding: 0;
+}
+
+.btn-write:focus {
+    padding: 0;
+}
+
+.btn-write:active {
+    padding: 0;
+}
+
 .card-list {
     display: flex;
     flex-direction: row;
