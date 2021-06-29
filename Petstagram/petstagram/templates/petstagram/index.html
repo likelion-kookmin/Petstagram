@@ -19,4 +19,53 @@
     <h2>최근 피드</h2>
 </div>
 
+<!-- 피드들 보기(임시, 디자인 X) -->
+{% for feed in feeds %}
+    <hr>
+    <a href="{%url 'detail' feed.id%}" class="btn btn-secondary">
+        <h2>{{feed.title}}</h2>
+    </a>
+{% endfor %}
+<hr>
+{% for feed in feeds %}
+    <button type="button" class="btn btn-secondary" data-bs-toogle="modal" data-bs-target="#staticBackdrop">
+        <h4>{{feed.title}}</h4>
+    </button><br>    
+{% endfor %}
+
+
+<!-- Modal 버튼 -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFeed">
+    새 글 작성하기
+</button>
+
+<!-- Modal 내용 -->
+<div class="modal fade" id="newFeed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">새 글 작성하기</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{%url 'create'%}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Textarea</label>
+                    <textarea class="form-control" name ="text" id="exampleFormControlTextarea1" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">완료</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
