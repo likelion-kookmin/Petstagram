@@ -19,21 +19,6 @@
     <h2>최근 피드</h2>
 </div>
 
-<!-- 피드들 보기(임시, 디자인 X) -->
-{% for feed in feeds %}
-    <hr>
-    <a href="{%url 'detail' feed.id%}" class="btn btn-secondary">
-        <h2>{{feed.title}}</h2>
-    </a>
-{% endfor %}
-<hr>
-{% for feed in feeds %}
-    <button type="button" class="btn btn-secondary" data-bs-toogle="modal" data-bs-target="#staticBackdrop">
-        <h4>{{feed.title}}</h4>
-    </button><br>    
-{% endfor %}
-
-
 <!-- Modal 버튼 -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFeed">
     새 글 작성하기
@@ -47,7 +32,7 @@
           <h5 class="modal-title" id="staticBackdropLabel">새 글 작성하기</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{%url 'create'%}" method="POST">
+        <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="modal-body">
                 <div class="mb-3">
@@ -56,8 +41,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Textarea</label>
-                    <textarea class="form-control" name ="text" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    <textarea class="form-control" name ="context" id="exampleFormControlTextarea1" rows="5"></textarea>
                 </div>
+                <label class="form-label" for="customFile">사진/동영상 업로드</label>
+                <input type="file" name="media" class="form-control" id="exampleFormControlTextarea1">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -67,5 +54,37 @@
       </div>
     </div>
   </div>
+
+<hr>
+
+{% for feed in feeds %}
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
+        <h4>{{feed.title}}</h4>
+    </button>
+    
+    <div class="modal fade" id="feed{{ feed.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{ feed.title }}</h5>
+              <br><br></bt>{{ feed.writer }}/t{{ feed.create_date }} <br>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{ feed.context }} <br><br>
+              {% if feed.media %}
+                <img src="{{ feed.media.url }}" width="300" height="300">
+              {% endif %}
+            </div>
+            <div class="modal-footer">
+              <a href="{%url 'edit' feed.id%}" class="btn btn-primary">수정</a>
+              <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr>
+{% endfor %}
 
 {% endblock %}

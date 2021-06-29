@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 from .models import Feed
 
 def index(request):
@@ -18,11 +19,27 @@ def new(request):
 def create(request):
     new_feed = Feed()
     new_feed.title = request.POST['title']
-    new_feed.text = request.POST['text']
+    new_feed.context = request.POST['context']
+    new_feed.create_date = timezone.datetime.now()
+    try:
+        new_feed.media = request.FILES['media']
+    except:
+        pass
     new_feed.save()
     return redirect('/')
 
 def delete(request, feed_id):
     delete_feed = get_object_or_404(Feed, pk=feed_id)
     delete_feed.delete()
+    return redirect('/')
+
+def edit(request, feed_id):
+    feed = get_object_or_404(Feed, pk=feed_id)
+    return render(request, 'petstagram/edit.html', {'feed':feed})
+
+def update(request, feed_id):
+    edit_feed = get_object_or_404(Feed, pk=feed_id)
+    edit_feed.title = request.POST['title']
+    edit_feed.text = request.POST['context']
+    edit_feed.save()
     return redirect('/')
