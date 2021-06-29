@@ -26,7 +26,7 @@ div {
     box-sizing: border-box;
   }
 
-.navbar {
+.nav_bar {
     width: 100%;
     display: flex;
     justify-content: space-between;
