@@ -20,33 +20,33 @@
 
         <div class="modal fade" id="newFeed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">새 글 작성하기</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Title</label>
-                            <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">새 글 작성하기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
+                            </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Textarea</label>
                             <textarea class="form-control" name ="context" id="exampleFormControlTextarea1" rows="5"></textarea>
                         </div>
-                        <label class="form-label" for="customFile">사진/동영상 업로드</label>
-                        <input type="file" name="media" class="form-control" id="exampleFormControlTextarea1">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" style="background-color: #F59B25;">완료</button>
-                    </div>
-                </form>
-              </div>
+                            <label class="form-label" for="customFile">사진/동영상 업로드</label>
+                            <input type="file" name="media" class="form-control" id="exampleFormControlTextarea1">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #F59B25;">완료</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
 
     <div class="card-list">
