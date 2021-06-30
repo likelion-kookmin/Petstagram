@@ -1,7 +1,18 @@
-<h1>Login</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-<form action="{% url 'login' %}" method="post">
-     {% csrf_token %}
-     {{form.as_p}}
-    <button type="submit"> submit </button>
-</form>
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static "css/account/login.css" %}">
+{% endblock extrahead %}
+
+{% block content %}
+
+<div class="login-form">
+    Login
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit"> submit </button>
+    </form>
+</div>
+{% endblock content %}
