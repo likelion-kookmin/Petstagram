@@ -11,7 +11,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-        return redirect("home")
+        return redirect("index")
     else:
         form = RegisterForm()
         return render(request, 'signup.html', {'form' : form})
@@ -27,7 +27,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
             
-            return redirect("home")
+            return redirect("index")
     else:
         form = AuthenticationForm()
         return render(request, 'login.html', {'form' : form})
@@ -35,4 +35,4 @@ def login_view(request):
 #로그아웃
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("index")
