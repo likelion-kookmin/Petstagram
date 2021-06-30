@@ -4,7 +4,8 @@ from django.db import models
 class Feed(models.Model):
     title = models.CharField(max_length=50)
     create_date = models.DateTimeField(null=True)
-    writer = models.CharField(max_length=20, null=True)
+    author_name = models.CharField(default="", max_length=50)
+    author_id = models.ForeignKey("account.CustomUser", on_delete=models.CASCADE)
     context = models.TextField()
     media = models.ImageField(upload_to="feed/", blank=True, null=True)
 
