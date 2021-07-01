@@ -32,7 +32,7 @@ def home(request):
     return render(request, 'petstagram/index.html', {'feeds':feeds})
 
 def detail(request, feed_id):
-    feed = get_object_or_404(Feed, pk=feed_id)
+    feeds = Feed.objects.filter(author_id = user)
     return render(request, 'petstagram/detail.html', {'feed':feed})
 
 def new(request):
