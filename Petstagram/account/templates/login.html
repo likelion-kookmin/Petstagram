@@ -1,7 +1,95 @@
-<h1>Login</h1>
+    <!DOCTYPE html>
+    <html lang="ko-kr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Petstagram : 로그인</title>
+    
+    <style>
+
+    @font-face {
+        font-family: 'IBMPlexSansKR-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'ImcreSoojin';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .navbar__title {
+        font-family: 'ImcreSoojin';
+        color: black;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    body {
+        font-family: 'IBMPlexSansKR-Regular';
+        text-align: left;
+        margin-top: 150px;
+        margin-bottom: 23px;
+        margin-left: 50px; 
+        padding-left: 500px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 23px;
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        color: #263238;
+    }
+    input[type="text"], input[type="password"] {
+        height: auto; /* 높이 초기화 */ 
+        line-height: normal; /* line-height 초기화 */ 
+        padding: .8em .5em; /* 여백 설정 */ 
+    }
+    
+    body .container .content .submit-wrap {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+  
+      body .container .content .submit-wrap a {
+        font-size: 12px;
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #999999;
+      }
+  
+      body .container .content .submit-wrap a:hover {
+        text-decoration: underline;
+      }
+  
+      body .container .content .signup-cont {
+        display: none;
+      }
+
+</style>
+    </head>
+    <body>
+        <div class="navbar__title" style="cursor: pointer;" onclick="location.href='/';">
+            <a class="navbar__title">펫스타그램</a>
+        </div>
+        <br><br><br>
 
 <form action="{% url 'login' %}" method="post">
      {% csrf_token %}
-     {{form.as_p}}
-    <button type="submit"> submit </button>
+     <input type="text" name="username" id="username" class="inpt" required="required" placeholder="아이디"> 
+     <br><br>
+     <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
+     <br><br>
+     <div class="submit-wrap">
+        <input type="submit" value="Sign in" class="submit">
+        <a href="{% url 'signup' %}" class="more"><input type="button" value="Sign Up" class="submit"></a>
+      </div>
 </form>
+
+        
+</body>
+</html>

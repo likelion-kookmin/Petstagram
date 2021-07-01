@@ -1,13 +1,94 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petstagram : Sign up</title>
+<style>
+    @font-face {
+        font-family: 'IBMPlexSansKR-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'ImcreSoojin';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .navbar__title {
+        font-family: 'ImcreSoojin';
+        color: black;
+        font-weight: bold;
+        font-size: 30px;
+    }
 
-{% block content %}
+    body {
+        font-family: 'IBMPlexSansKR-Regular';
+        text-align: left;
+        margin-top: 30px;
+        margin-bottom: 23px;
+        margin-left: 50px; 
+        padding-left: 500px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 23px;
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        color: #263238;
+    }
 
-<h1>Sign Up!</h1>
+</style>
+</head>
 
-<form action="{% url 'signup' %}" method="post">
-     {% csrf_token %}
-     {{form.as_p}}
-    <button type="submit"> submit </button>
-</form>
+<body>
+    <div class= navbar__title  style="cursor: pointer;" onclick="location.href='/';">
+        <h3>펫스타그램</h3>
+    </div>
+    <form action="{% url 'signup' %}" method="POST">
+        {%csrf_token%}
+        <label for="Username"><b>아이디</b></label>
+        <br>
+        {{form.username}}
+        <br><br>
+        <label for="password1"><b>비밀번호</b></label>
+        <br>
+        {{form.password1}}
+        <br><br>
+        <label for="password2"><b>비밀번호 재확인</b></label>
+        <br>
+        {{form.password2}}
+        <br><br>  
+        <label for=nickname><b>별명</b></label> 
+        <br>
+        {{form.nickname}}
+        <br><br>
+        <label for="e-mail"><b>이메일</b></label>
+        <br>
+        {{form.e_mail}}
+        <br><br>
+        <label for="phone-number"><b>전화번호</b></label>
+        <br>
+        {{form.phone_number}}
+        <br>
+        <b>(*전화번호는 선택사항입니다.)</b>
+        <br><br>
+        <label for="bio"><b>한 줄 소개</b></label>
+        <br>
+        {{form.bio}}
+        <br><br>
+        <label for="profile"><b>프로필 사진</b></label>
+        <br>
+        {{form.profile}}
+        <br><br>
+      <input type="submit" value="signup">
+    </form>
+    
+</body>
+</html>
 
-{% endblock %}
+    
+
+    

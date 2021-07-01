@@ -7,3 +7,5 @@ class CustomUser(AbstractUser):
     nickname = models.CharField(max_length = 100)
     phone_number = models.CharField(max_length = 100, blank = True)
     e_mail = models.CharField(max_length = 100)
+    bio = models.TextField(blank=True)
+    profile = models.ImageField(blank=True, upload_to="media/images/%Y/%m")
