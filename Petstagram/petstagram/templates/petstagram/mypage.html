@@ -2,9 +2,88 @@
 {% load static %}
 
 {% block extrahead %}
+    <link rel="stylesheet" href="{% static "css/petstagram/mypage.css" %}">
 {% endblock extrahead %}
 
-    <link rel="stylesheet" href="{% static "css/petstagram/mypage.css" %}">
-
 {% block content %}
+
+<div class="profile">
+    <div class="profile-img">
+        <img src="{{ userprofile.url }}">
+    </div>
+
+    <div class="profile-user">
+        <div class="profile-user-nickname">{{username}}</div>
+        <div class="profile-user-id">{{userid}}</div>
+        <div class="profile-user-comment">{{userbio}}</div>
+    </div>
+</div>
+
+<div class="card-list">
+    <div class="card-list">
+        {% for feed in feeds %}
+        <div class="card">
+            <!-- 카드 헤더 -->
+            {% if feed.media %}
+                <div class="card-header" style="background-image: url({{feed.media.url}});" data-bs-toggle="modal"
+                    data-bs-target="#feed{{ feed.id }}">
+                    <div class="card-header-file-state">
+                        <!-- <i class="fas fa-images"></i> -->
+                    </div>
+                </div>
+            {% else %}
+                <div class="card-header" style="background-image: url({% static 'img/noimg.jpg' %});" data-bs-toggle="modal"
+                    data-bs-target="#feed{{ feed.id }}">
+                    <div class="card-header-file-state">
+                        <!-- <i class="fas fa-images"></i> -->
+                    </div>
+                </div>
+            {% endif %}
+    
+            <!-- 모달 내용 -->
+            <div class="modal fade" id="feed{{ feed.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ feed.title }}</h5>
+                            <br><br>{{ feed.author_name }}/t{{ feed.create_date }} <br>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ feed.context }} <br><br>
+                            {% if feed.media %}
+                            <img src="{{ feed.media.url }}" width="300" height="300">
+                            {% endif %}
+                        </div>
+                        <div class="modal-footer">
+                            {% if user.is_authenticated %}
+                                <a href="{%url 'edit' feed.id%}" class="btn btn-primary" style="background-color: #F59B25;">edit</a>
+                                <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                            {% endif %}
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!--  카드 바디 -->
+            <div class="card-body" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
+    
+                <!--  카드 바디 헤더 -->
+                <div class="card-body-header">
+                    <div class="card-body-title">{{ feed.title }}</div>
+                    <div class="card-body-writer">{{ feed.author_name }}</div>
+                </div>
+                <div style="width: 90%; margin-left: 7%;">
+                    <p class="card-body-description">
+                        {{ feed.context }} </p>
+                </div>
+                <!--  카드 바디 본문 -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
