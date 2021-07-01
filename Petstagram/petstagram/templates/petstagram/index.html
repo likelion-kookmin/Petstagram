@@ -12,8 +12,13 @@
 
 <div class="recent-feed">
     최근 피드
-    <button type="button" class="btn-write" data-bs-toggle="modal" data-bs-target="#newFeed"
+    {% if user.is_authenticated %}
+        <button type="button" class="btn-write" data-bs-toggle="modal" data-bs-target="#newFeed"
+            style="float: right;"><span><i class="fas fa-pen-square"></i> 새글작성</span></button>
+    {% else %}
+        <button type="button" class="btn-write" disabled
         style="float: right;"><span><i class="fas fa-pen-square"></i> 새글작성</span></button>
+    {% endif %}
 
     <div class="modal fade" id="newFeed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -77,8 +82,10 @@
                         {% endif %}
                     </div>
                     <div class="modal-footer">
-                        <a href="{%url 'edit' feed.id%}" class="btn btn-primary" style="background-color: #F59B25;">edit</a>
-                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                        {% if user.is_authenticated %}
+                            <a href="{%url 'edit' feed.id%}" class="btn btn-primary" style="background-color: #F59B25;">edit</a>
+                            <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                        {% endif %}
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
