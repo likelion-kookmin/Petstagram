@@ -1,0 +1,19 @@
+<h1>Update Feed</h1>
+
+<div>
+    <form action="{% url 'update' feed.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input type="text" name="title" value="{{feed.title}}" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Textarea</label>
+            <textarea class="form-control" name ="context" id="exampleFormControlTextarea1" rows="5">{{feed.context}}</textarea>
+        </div>
+        <label class="form-label" for="customFile">사진/동영상 업로드</label>
+        <input type="file" name="media" class="form-control" id="exampleFormControlTextarea1">
+
+        <button type="submit" class="btn btn-primary" style="background-color: #F59B25;">완료</button>
+    </form>
+</div>

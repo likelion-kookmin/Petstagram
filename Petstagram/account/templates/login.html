@@ -1,11 +1,7 @@
-    <!DOCTYPE html>
-    <html lang="ko-kr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Petstagram : 로그인</title>
-    
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
     <style>
 
     @font-face {
@@ -71,12 +67,9 @@
       }
 
 </style>
-    </head>
-    <body>
-        <div class="navbar__title" style="cursor: pointer;" onclick="location.href='/';">
-            <a class="navbar__title">펫스타그램</a>
-        </div>
-        <br><br><br>
+{% endblock extrahead %}
+
+{% block content %}
 
 <form action="{% url 'login' %}" method="post">
      {% csrf_token %}
@@ -90,6 +83,5 @@
       </div>
 </form>
 
-        
-</body>
-</html>
+{% endblock content %}
+

@@ -35,4 +35,4 @@ def login_view(request):
 #로그아웃
 def logout_view(request):
     logout(request)
-    return redirect("index")
+    return redirect("home")
