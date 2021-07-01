@@ -53,7 +53,7 @@
     {% for feed in feeds %}
     <div class="card">
         <!-- 카드 헤더 -->
-        <div class="card-header" style="background-image: url({{feed.media}});" data-bs-toggle="modal"
+        <div class="card-header" style="background-image: url({{feed.media.url}});" data-bs-toggle="modal"
             data-bs-target="#feed{{ feed.id }}">
             <div class="card-header-file-state">
                 <!-- <i class="fas fa-images"></i> -->
@@ -77,10 +77,7 @@
                         {% endif %}
                     </div>
                     <div class="modal-footer">
-                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
-                                <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>    
-                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
-                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                        <a href="{%url 'edit' feed.id%}" class="btn btn-primary" style="background-color: #F59B25;">edit</a>
                         <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>

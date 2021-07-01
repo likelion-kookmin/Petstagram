@@ -34,6 +34,22 @@ def create(request):
     new_feed.save()
     return redirect('/')
 
+def edit(request, feed_id):
+    feed = get_object_or_404(Feed, pk=feed_id)
+    return render(request, 'petstagram/edit.html', {'feed':feed})
+
+def update(request, feed_id):
+    edit_feed = get_object_or_404(Feed, pk=feed_id)
+    edit_feed.title = request.POST['title']
+    edit_feed.context = request.POST['context']
+    edit_feed.create_date = timezone.datetime.now()
+    try:
+        edit_feed.media = request.FILES['media']
+    except:
+        pass
+    edit_feed.save()
+    return redirect('/')
+
 def delete(request, feed_id):
     delete_feed = get_object_or_404(Feed, pk=feed_id)
     delete_feed.delete()
