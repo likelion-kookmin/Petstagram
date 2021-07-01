@@ -50,7 +50,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates'), 'account/templates'],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates'), 
+                 os.path.join(BASE_DIR, 'account/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,6 +117,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'petstagram', 'static'),
+    os.path.join(BASE_DIR, 'account', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
