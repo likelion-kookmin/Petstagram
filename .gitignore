@@ -9,7 +9,7 @@ secrets.json
 ### 개인 venv directory 작성해주세요
 venv
 
-
+migrations
 
 ### Django ###
 *.log

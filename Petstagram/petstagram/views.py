@@ -6,6 +6,27 @@ from .models import Feed
 def index(request):
     return render(request, 'petstagram/index.html')
 
+def mypage(request):
+
+    CustomUser = apps.get_model('account', 'CustomUser')
+    user = CustomUser.objects.get(username=request.user)
+
+    userprofile = user.profile
+    username = user.nickname
+    userid = user
+    userbio = user.bio
+
+    feeds = Feed.objects.filter(author_id = user)
+    context = {
+        'userprofile' : userprofile,
+        'username' : username,
+        'userid' : userid,
+        'userbio' : userbio,
+        'feeds' : feeds,
+
+    }
+    return render(request, 'petstagram/mypage.html', context)
+
 def home(request):
     feeds = Feed.objects.all()
     return render(request, 'petstagram/index.html', {'feeds':feeds})

@@ -31,7 +31,7 @@
         {% if user.is_authenticated %}
             <ul class="navbar__icons">
                 <li><i class="fas fa-bell fa-lg"></i></li>
-                <li><i class="fas fa-user fa-lg"></i></li>
+                <li><i class="fas fa-user fa-lg" style="cursor: pointer;" onclick="location.href='/mypage';"></i></li>
                 <li><button class="navbar__btn" onclick="location.href='/account/logout';"><span>LOGOUT</span></button></li>
             </ul>
         {% else %}
