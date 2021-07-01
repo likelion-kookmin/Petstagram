@@ -58,12 +58,21 @@
     {% for feed in feeds %}
     <div class="card">
         <!-- 카드 헤더 -->
-        <div class="card-header" style="background-image: url({{feed.media.url}});" data-bs-toggle="modal"
-            data-bs-target="#feed{{ feed.id }}">
-            <div class="card-header-file-state">
-                <!-- <i class="fas fa-images"></i> -->
+        {% if feed.media %}
+            <div class="card-header" style="background-image: url({{feed.media.url}});" data-bs-toggle="modal"
+                data-bs-target="#feed{{ feed.id }}">
+                <div class="card-header-file-state">
+                    <!-- <i class="fas fa-images"></i> -->
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="card-header" style="background-image: url({% static 'img/noimg.jpg' %});" data-bs-toggle="modal"
+                data-bs-target="#feed{{ feed.id }}">
+                <div class="card-header-file-state">
+                    <!-- <i class="fas fa-images"></i> -->
+                </div>
+            </div>
+        {% endif %}
 
         <!-- 모달 내용 -->
         <div class="modal fade" id="feed{{ feed.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
