@@ -21,7 +21,7 @@
     padding: 8px 12px;
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index :99999
+    z-index :99999;
 }
 
 .navbar__logo {
@@ -131,10 +131,6 @@ main {
     min-height: calc(100vh - 5rem);
     width: 82%;
     margin: auto;
-}
-
-.footer {
-    height: 5rem;
 }
 
 .content {

@@ -1,99 +1,252 @@
 {% extends 'base.html' %}
 
-    {% load static %}
-    {% block extrahead %}
+{% load static %}
+{% block extrahead %}
 
     <link rel="stylesheet" href="{% static "css/petstagram/index.css" %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    {% endblock extrahead %}
+{% endblock extrahead %}
 
 {% block content %}
 
-    <div class="recent-feed">
-        최근 피드
-        <button type="button" class="btn-write" data-bs-toggle="modal" data-bs-target="#newFeed" style="float: right;"><span><i class="fas fa-pen-square"></i> 새글작성</span></button>
+<div class="recent-feed">
+    최근 피드
+    <button type="button" class="btn-write" data-bs-toggle="modal" data-bs-target="#newFeed"
+        style="float: right;"><span><i class="fas fa-pen-square"></i> 새글작성</span></button>
 
-        <div class="modal fade" id="newFeed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">새 글 작성하기</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Title</label>
-                                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="제목">
-                            </div>
+    <div class="modal fade" id="newFeed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">새 글 작성하기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Title</label>
+                            <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
+                                placeholder="제목">
+                        </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Textarea</label>
-                            <textarea class="form-control" name ="context" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea class="form-control" name="context" id="exampleFormControlTextarea1"
+                                rows="5"></textarea>
                         </div>
-                            <label class="form-label" for="customFile">사진/동영상 업로드</label>
-                            <input type="file" name="media" class="form-control" id="exampleFormControlTextarea1">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" style="background-color: #F59B25;">완료</button>
-                        </div>
-                    </form>
-                </div>
+                        <label class="form-label" for="customFile">사진/동영상 업로드</label>
+                        <input type="file" name="media" class="form-control" id="exampleFormControlTextarea1">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" style="background-color: #F59B25;">완료</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="card-list">
-        {% for feed in feeds %}
-            <div class="card">
-                <!-- 카드 헤더 -->
-                <div class="card-header" style="background-image: url({{feed.media}});" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
-                    <div class="card-header-file-state">
-                        <!-- <i class="fas fa-images"></i> -->
+<div class="card-list">
+    {% for feed in feeds %}
+    <div class="card">
+        <!-- 카드 헤더 -->
+        <div class="card-header" style="background-image: url({{feed.media}});" data-bs-toggle="modal"
+            data-bs-target="#feed{{ feed.id }}">
+            <div class="card-header-file-state">
+                <!-- <i class="fas fa-images"></i> -->
+            </div>
+        </div>
+
+        <!-- 모달 내용 -->
+        <div class="modal fade" id="feed{{ feed.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ feed.title }}</h5>
+                        <br><br>{{ feed.author_name }}/t{{ feed.create_date }} <br>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-
-                <!-- 모달 내용 -->
-                <div class="modal fade" id="feed{{ feed.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ feed.title }}</h5>
-                                <br><br>{{ feed.author_name }}/t{{ feed.create_date }} <br>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                {{ feed.context }} <br><br>
-                                {% if feed.media %}
-                                    <img src="{{ feed.media.url }}" width="300" height="300">
-                                {% endif %}
-                            </div>
-                            <div class="modal-footer">
+                    <div class="modal-body">
+                        {{ feed.context }} <br><br>
+                        {% if feed.media %}
+                        <img src="{{ feed.media.url }}" width="300" height="300">
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
                                 <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>    
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                        <a href="{%url 'delete' feed.id%}" class="btn btn-danger">delete</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
-                </div>
-
-                <!--  카드 바디 -->
-                <div class="card-body" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
-
-                    <!--  카드 바디 헤더 -->
-                    <div class="card-body-header">
-                        <div class="card-body-title">{{ feed.title }}</div>
-                        <div class="card-body-writer">{{ feed.author_name }}</div>
-                    </div>
-                    <div style="width: 90%; margin-left: 7%;">
-                        <p class="card-body-description">
-                            {{ feed.context }} </p>
-                    </div>
-                    <!--  카드 바디 본문 -->
                 </div>
             </div>
+        </div>
 
-        {% endfor %}
+        <!--  카드 바디 -->
+        <div class="card-body" data-bs-toggle="modal" data-bs-target="#feed{{ feed.id }}">
+
+            <!--  카드 바디 헤더 -->
+            <div class="card-body-header">
+                <div class="card-body-title">{{ feed.title }}</div>
+                <div class="card-body-writer">{{ feed.author_name }}</div>
+            </div>
+            <div style="width: 90%; margin-left: 7%;">
+                <p class="card-body-description">
+                    {{ feed.context }} </p>
+            </div>
+            <!--  카드 바디 본문 -->
+        </div>
     </div>
+    {% endfor %}
+</div>
+
+<!-- Swiper -->
+<div style="font-size: 26px; font-weight: bold; margin: 3vh 0 2vh 0;">
+    요즘 뜨는 컨텐츠
+</div>
+<div class="swiper-container mySwiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="swiper-slide-box">
+                <a href="https://www.card-gorilla.com/contents/detail/1461" target="_blank"><img src="{% static "img/ad_1.jpg" %}" alt=""></a>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-slide-box">
+                <a href="https://www.youtube.com/watch?v=anC0gCdReZc" target="_blank"><img src="{% static 'img/ad_2.jpg' %}" alt=""></a>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-slide-box">
+                <a href="http://petivity.kr/" target="_blank"><img src="{% static 'img/ad_3.jpg' %}" alt=""></a>
+            </div>
+        </div>
+                <div class="swiper-slide">
+            <div class="swiper-slide-box">
+                <a href="https://www.wadiz.kr/web/wcast/detail/7206" target="_blank"><img src="{% static 'img/ad_4.jpg' %}" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {  // 자동 슬라이드 설정 , 비 활성화 시 false
+            delay: 2000,   // 시간 설정
+            disableOnInteraction: false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 480px;
+    }
+
+    .swiper-wrapper {
+        width: 90%;
+        height: 90%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .swiper-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .swiper-button-next {
+        background: url({% static 'img/next.png' %}) no-repeat;
+        background-size: 50% auto;
+        background-position: center;
+    }
+
+    .swiper-button-prev {
+        background: url({% static 'img/prev.png' %}) no-repeat;
+        background-size: 50% auto;
+        background-position: center;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        display: none;
+    }
+
+    .swiper-pagination-bullet {
+        background: #F59B25;
+    }
+    
+    .swiper-slide-box {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .swiper-slide-box img {
+        display: block;
+        height:100%;
+    }
+    .swiper-slide-box p {
+        position: absolute;
+        bottom:-16px;
+        left:0;
+        width:100%;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color:#fff;
+        font-size: 16px;
+        padding: 10px;
+        }
+</style>
 
 {% endblock %}
