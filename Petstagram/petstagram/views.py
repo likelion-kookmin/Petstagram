@@ -6,6 +6,9 @@ from .models import Feed
 def index(request):
     return render(request, 'petstagram/index.html')
 
+def mypage(request):
+    return render(request, 'petstagram/mypage.html')
+
 def home(request):
     feeds = Feed.objects.all()
     return render(request, 'petstagram/index.html', {'feeds':feeds})
